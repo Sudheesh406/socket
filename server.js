@@ -24,7 +24,9 @@
 //     socket.on("board_message", (msg) => {
 //         io.emit("admin_content", msg);  // Sends the message to the admin
 //     });
-    // const txt ;
+    // const txt = false;
+    // console.log(txt);
+    
 // })
 
 // http.listen(3000,(err)=>{
