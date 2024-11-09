@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>admin</title>
+</head>
+<body>
+    <style>
+        #boardMessageDisplay{
+            color: #1c0b0b;
+            font-size: 40px;
+            font-weight: 700;
+        }
+    </style>
+    <textarea id="message" style="width:250px"></textarea>
+    <button id="send">send</button>
+    <p id="boardMessageDisplay"> </p>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+         const socket = io();
+         document.getElementById("send").addEventListener("click",()=>{
+            let txt = document.getElementById("message").value;
+            socket.emit("message",txt);
+         })
+         socket.on("admin_content", (message) => {
+            document.getElementById("boardMessageDisplay").innerText = 
+            message;
+        });
+    </script>
+</body>
+</html>

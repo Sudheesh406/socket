@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>board</title>
+</head>
+<body>
+    <div class="container">
+
+        <input type="text" id="boardMessage" placeholder="Type a message for admin">
+        <button id="sendToAdmin">Send to Admin</button>
+        <p class="noticeText" id="noticeText">
+        </p>
+    </div>
+    <style>
+        .noticeText{
+            color: #1c0b0b;
+            font-size: 40px;
+            font-weight: 700;
+        }
+    </style>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+        socket.on("board_content",(message)=>{
+            document.getElementById("noticeText").innerHTML= message;
+        })
+
+        document.getElementById("sendToAdmin").addEventListener("click", () => {
+            const msg = document.getElementById("boardMessage").value;
+            socket.emit("board_message", msg);
+        });
+    </script>
+</body>
+</html>
